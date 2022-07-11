@@ -1,56 +1,57 @@
 
-<div class="main">
+<div class="CommAdjBreadCrumbContainer">
     
-  <ul class="breadcrumb">
+  <ul class="CommAdjBreadcrumb">
       <li style="font-family:'Poppins', sans-serif; font-style: italic;"><a href="#">Home</a></li>
       <li style="font-family:'Poppins', sans-serif; font-style: italic;"><a href="#">Inbox</a></li>
       <li style="font-family:'Poppins', sans-serif; font-style: italic;"><a href="#">Commission Adjustment</a></li>
   </ul> 
-  <div class="eventlogs"><button class="eventb">EVENT LOGS</button></div>
+  <div class="CommAdjEvntLog"><button class="CommAdjEvntLogButton">EVENT LOGS</button></div>
 </div>
 
-<div class="ca-header">
+<div class="CovAdjHeader">
   <p class="TN">Transaction&nbsp;No.&nbsp;3019</p>   
-        <div class="ca">Commission&nbsp;&nbsp;&nbsp;Adjustment</div>
+        <div class="CovAdjScreenTitle">Commission&nbsp;&nbsp;&nbsp;Adjustment</div>
         <p>Screen&nbsp;ID:&nbsp;SCR4104022</p>
     </div>
     
-    <mat-drawer-container class="example-container" autosize>
-      <mat-drawer #drawer class="example-sidenav" mode="side" position="end">
-        <div class="p-request">REQUEST&nbsp;SUMMARY: </div>
+    
+    <mat-drawer-container class="CovAdjSideNav-container" autosize>
+      <mat-drawer #drawer class="CovAdjSideNav" mode="side" position="end">
+        <div class="CovAdj-request">REQUEST&nbsp;SUMMARY: </div>
         <p>Policy&nbsp;Number<br>
         POL-001-001</p>
         <br>
-        <div class="InvAdjust">Invoice/s&nbsp;for&nbsp;Adjustment</div>
+        <div class="CovAdjInvAdjust">Invoice/s&nbsp;for&nbsp;Adjustment</div>
            <p>100000001 <br>
               100039443</p> <br>
-        <div class="p-adj">Adjustment&nbsp;Type</div>
+        <div class="CovadjAD">Adjustment&nbsp;Type</div>
         <p>Addition&nbsp;in&nbsp;Commision</p>
         <br>
-        <div class="p-reason">Reason&nbsp;for&nbsp;Adjustment</div> 
+        <div class="CovAdj-reason">Reason&nbsp;for&nbsp;Adjustment</div> 
         <p>To&nbsp;add&nbsp;5%&nbsp;commission&nbsp;in&nbsp;Invc&nbsp;#s&nbsp;100000001&nbsp;
           <br>&&nbsp;100039443</p>
         <br>
         <br>
-        <div class="PolicyBasic">POLICY&nbsp;BASIC&nbsp;INFO:</div>
+        <div class="CovAdjPolicyBasic">POLICY&nbsp;BASIC&nbsp;INFO:</div>
         <br>
-        <div class="Assured">Assured</div>
+        <div class="CovAdjAssured">Assured</div>
         <p>CYRRENE&nbsp;D.&nbsp;INOY</p>
         <br>
-        <div class="LineType">Line/Type</div>
+        <div class="CovAdjLineType">Line/Type</div>
         <p>MOTOR-Comprehensive&nbsp;insurance</p>
         <br>
-        <div class="ReferNum">Reference&nbsp;Number</div>
+        <div class="CovAdjReferNum">Reference&nbsp;Number</div>
         <p>200602210000012</p>
         <br>
-        <div class="EnsurCom">Insurance&nbsp;Company</div>
+        <div class="CovAdjEnsurCom">Insurance&nbsp;Company</div>
         <p>FPG&nbsp;Insurance</p>
         <br>
-        <div class="PoliPer">Policy&nbsp;Period</div>
+        <div class="CovAdjPoliPer">Policy&nbsp;Period</div>
         <p>03/19/2021&nbsp;to&nbsp;03/13/2022</p>
       </mat-drawer>
     
-      <div class="example-sidenav-content">
+      <div class="CovAdj-sidenav-content">
         <button type="button" mat-button (click)="drawer.toggle()">
           <i class="fas fa-angle-double-left"></i>
         </button>
@@ -60,11 +61,118 @@
       <h1>Review Adjustment Details</h1>
       
     </div>
+    
 
-<p style="color:  royalblue; font-family: 'Poppins', sans-serif; margin-left: 30px;"> Update Invoice/s For Adjustment <input style="margin-left: 20px;" type="checkbox"></p>
+<p style="color:  royalblue; font-family: 'Poppins', sans-serif; margin-left: 30px;">Update Invoice/s For Adjustment <mat-checkbox style="margin-left: 6px;"></mat-checkbox></p>
 <p style="color:  royalblue; font-size: 20px; font-family: 'Poppins', sans-serif; margin-left: 30px;" >Invoice/s For Adjustment</p>
-<div class="mat-elevation-z8" style="overflow-y: auto; overflow-x:auto;">
-  <table mat-table [dataSource]="dataSource">
+
+<div id="text" style="overflow-y: auto; overflow-x:auto;">
+
+  <table  mat-table [dataSource]="dataSource2" class="CovAdjRevTable" >
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()"
+                      [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row" style="text-align: center;">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)"
+                      [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </td>
+    </ng-container>
+  
+    <!-- # Column -->
+    <ng-container matColumnDef="Hashtag" sticky>
+      <th mat-header-cell *matHeaderCellDef width=200px>#</th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.Hashtag}} </td>
+    </ng-container>
+
+
+    <!-- Invoice Column -->
+    <ng-container matColumnDef="Invoiceno" sticky>
+      <th mat-header-cell *matHeaderCellDef width=200px>Invoice&nbsp;no.</th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element.Invoiceno}} </td>
+    </ng-container>
+
+  <!-- Coverage Column -->
+    <ng-container matColumnDef="CovDesc">
+      <th mat-header-cell *matHeaderCellDef width=200px>Coverage&nbsp;Description</th>
+      <td mat-cell *matCellDef="let element" style="text-align:left;"> {{element.CovDesc}}  </td>
+    </ng-container>
+
+    <!-- Covered Column -->
+    <ng-container matColumnDef="CovAmount">
+      <th mat-header-cell *matHeaderCellDef width=200px>Covered&nbsp;Amount</th>
+      <td mat-cell *matCellDef="let element"> {{element.CovAmount}} </td>
+    </ng-container>
+
+    <!-- Premium rate Column -->
+    <ng-container matColumnDef="Prerate">
+      <th mat-header-cell *matHeaderCellDef width=200px>Premium&nbsp;Rate</th>
+      <td mat-cell *matCellDef="let element"> {{element.Prerate}} </td>
+    </ng-container>
+
+    <!-- Premium Amount Column -->
+    <ng-container matColumnDef="Pream">
+      <th mat-header-cell *matHeaderCellDef width=200px>Premium&nbsp;Amount</th>
+      <td mat-cell *matCellDef="let element"> {{element.Pream}} </td>
+    </ng-container>
+
+
+    <!-- Premium Amount Column -->
+    <ng-container matColumnDef="Corate">
+      <th mat-header-cell *matHeaderCellDef width=200px>Commision&nbsp;Rate</th>
+      <td mat-cell *matCellDef="let element"> {{element.Corate}} </td>
+    </ng-container>
+
+    <!-- Adjustment Column -->
+    <ng-container matColumnDef="Adj">
+      <th mat-header-cell *matHeaderCellDef width=200px>Adjustment</th>
+      <td mat-cell *matCellDef="let element"> {{element.Adj}} </td>
+    </ng-container>
+
+    <!-- Sum Column -->
+    <ng-container matColumnDef="Sum">
+      <th mat-header-cell *matHeaderCellDef width=200px>Sum</th>
+      <td mat-cell *matCellDef="let element"> {{element.Sum}} </td>
+    </ng-container>
+
+    <!-- Total Column -->
+    <ng-container matColumnDef="Total">
+      <th mat-header-cell *matHeaderCellDef width=200px>Total</th>
+      <td mat-cell *matCellDef="let element"> {{element.Total}} </td>
+    </ng-container>
+
+    <!-- Gross Column -->
+    <ng-container matColumnDef="Gross">
+      <th mat-header-cell *matHeaderCellDef width=200px>Gross</th>
+      <td mat-cell *matCellDef="let element"> {{element.Gross}} </td>
+    </ng-container>
+
+    <!-- Wtax Column -->
+    <ng-container matColumnDef="Wtax">
+      <th mat-header-cell *matHeaderCellDef width=200px>Wtax</th>
+      <td mat-cell *matCellDef="let element"> {{element.Wtax}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"
+        (click)="selection.toggle(row)">
+    </tr>
+  </table>
+</div>
+  <br><br>
+  
+  
+  <div class="CovAdjSecRevtable_container" style="overflow-y: auto; overflow-x: auto;">
+  <table mat-table [dataSource]="dataSource" class="CovAdjSecRevtable">
 
     <!-- # Column -->
     <ng-container matColumnDef="Hashtag" sticky>
@@ -143,11 +251,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"width=200px></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-</div>
+  </div>
+
 <br><br>
 
-<div class="mat-elevation-z9" style="overflow-y: auto; overflow-x:auto; width: 78%;" >
-  <table mat-table [dataSource]="dataSource1">
+
+<div class="CovAdjThrdRevtable_container" style="overflow-y: auto; overflow-x:auto; width: 78%;" >
+  <table mat-table [dataSource]="dataSource1" class="CovAdjThrdRevtable">
 
     <!-- Invoice Column -->
     <ng-container matColumnDef="Invno" sticky>
@@ -206,8 +316,8 @@
 
 <br><br>
 
-<div class="mat-elevation-z9"style="overflow-y: auto; overflow-x:auto; ">
-  <table mat-table [dataSource]="dataSource1">
+<div class="CovAdjThrdRevtable_container"style="overflow-y: auto; overflow-x:auto; ">
+  <table mat-table [dataSource]="dataSource1" class="CovAdjThrdRevtable">
 
     <!-- Invoice Column -->
     <ng-container matColumnDef="Invno" sticky>
@@ -260,8 +370,8 @@
 </div>
 <br><br>
 
-<div class="mat-elevation-z9">
-  <table mat-table [dataSource]="dataSource1">
+<div class="CovAdjThrdRevtable_container">
+  <table mat-table [dataSource]="dataSource1" class="CovAdjThrdRevtable">
 
     <!-- Invoice Column -->
     <ng-container matColumnDef="Invno" sticky>
@@ -308,15 +418,14 @@
   </table>
 </div>
 <br><br>
-
-
+<div class="input">
 <p style="padding: 0 20px; color:  royalblue; font-family: 'Poppins'">Date Requested :</p>
-<div class="dpi" style="padding: 0 20px;">
-  <div class="DR"> 
-  <p class="DateReq" style="font-family: 'Poppins', sans-serif;"></p>
+<div class="CovAdjDatePickerContainer" style="padding: 0 20px;">
+  <div class="CovAdjDatePickerContainer"> 
+  <p class="CovAdjDatePicker" style="font-family: 'Poppins', sans-serif;"></p>
   <mat-form-field appearance="outline" class="example-form-field">
     <mat-label >Date&nbsp;Requested:</mat-label>
-    <input matInput [matDatepicker]="datepicker">
+    <input matInput disabled="" [matDatepicker]="datepicker">
     <mat-hint>MM/DD/YYYY</mat-hint>
     <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
     <mat-datepicker #datepicker>
@@ -346,38 +455,46 @@
       </mat-form-field>
       </form>
     </div>
-    <div style="margin-left: 23px;">
-      <input type="checkbox">
-      <label for="Agreement" style="color: royalblue;  font-size: 12px; font-family: 'Poppins'">By Clicking this,you agree that you have thoroughly reviewed this transaction </label>
-      
+    <div>
+      <section style="margin-left: 17px;">
+          <mat-checkbox (click)="checksweetalert()"  style="color: royalblue;" class="addressPermanent" formControlName="clientIsBillingAddress">By Clicking this you have thoroughly reviewed this transaction?</mat-checkbox>
+      </section>
   </div>
   <br><br>
 
-  <div class="BTNS">
-    <div class="CLS-BTN">
-      <button class="cls" mat-raised-button><i class="fas fa-save"style></i>Save</button>
-      <button class="pdf" mat-raised-button><i class="fas fa-times-circle"></i>Close</button>
+  <div class="CovAdjButtons">
+    <div class="CovAdjButtonContainer">
+      <button (click)="savesweetalert()" class="CovAdjSaveButton" mat-raised-button><i class="fas fa-save"style></i>Save</button>
+      <button (click)="closesweetalert()" class="CovAdjCloseButton" mat-raised-button><i class="fas fa-times-circle"></i>Close</button>
     </div>
 
     
     
-    <div class="GRNT-BTN">
+    <div class="CovAdj2ndButtons">
 
-      <div class="main-complete" style="display: flex;">`
-        <div class="rmrks">
-        <input class="REMARKS" type="REMARKS" placeholder="REMARKS">
-        </div>
-        <div class="SR">
-        <select name="type" class="filter-type" style="height: 34px;
-        font-family: 'Poppins';
-        margin-right: 20px;
-        font-size: 13px;;">
-            <option>SELECT RESPONSE</option>
+      <form class="example-form" style="bottom:0;  display: flex; align-items: baseline;">
+      <mat-form-field class="commAdj3rdStepperFldRemarks" appearance="outline">
+        <mat-label>Remarks</mat-label>
+        <input matInput value="">
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" class="commAdj3rdStepperFldRemarks">
+        <mat-label>Response
+        </mat-label>
+        <select matNativeControl required>
+          <option value="APPROVE ADJUSTMENT">Approve Adjustment</option>
+          <option value="RETURN FOR REVISION">Return For Revision</option>
         </select>
-        </div>
-      <button class="excel" mat-raised-button><i class="fas fa-check-circle"></i>Complete</button>
+      </mat-form-field>
+    </form>
+      <button (click)="completesweetalert()" class="CovAdjCompleteButton" mat-raised-button><i class="fas fa-check-circle"></i>Complete</button>
       
     </div>
   </div>
 
+  
+
+
+
+  
 
