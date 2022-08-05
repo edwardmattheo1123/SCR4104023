@@ -125,7 +125,8 @@ li a{
     color: white;
   }
   .CovAdjRevTable{
-    width: 100%;
+    width: 96%;
+    margin-left: 30px;
     table-layout: auto;
     border-collapse: collapse;
     font-family: 'Poppins', sans-serif;
@@ -136,6 +137,14 @@ li a{
   table-layout: fixed;
   border-collapse: collapse;
   font-family: 'Poppins', sans-serif;
+}
+.CovAdjSecRevtable_container{
+  width: 96%;
+    margin-left: 30px;
+    overflow: auto;
+    font-family: 'Poppins', sans-serif;
+    border-top: 1px;
+    border-bottom: 1px;
 }
 .CovAdjThrdRevtable{
   width: 100%;

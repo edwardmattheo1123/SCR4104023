@@ -71,31 +71,18 @@ export class AppComponent {
   }
 
   checksweetalert(){
-    Swal.fire({
-      title: 'Warning',
-      text: "Are you sure you want to approve this transaction?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirm',
-      cancelButtonText:'Close'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire(
-          'Success!',
-          'Transaction routed for printing with trans. no. 20242',
-          'success'
-        )
-      }
-    })
+    Swal.fire(
+      'Required!',
+      'Please acknowledge you have reviewed the transaction.',
+      'warning'
+    )
   }
 
   savesweetalert(){
     Swal.fire({
-      title: 'Warning',
-      text: "This OR no.248522 has been already deposited. Do you still want to proceed?",
-      icon: 'warning',
+      title: 'Are you Sure?',
+      text: "This will tag the transaction as approved.",
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -113,22 +100,44 @@ export class AppComponent {
   }
   closesweetalert(){
     Swal.fire({
-      title: 'Close',
-  text: "",
-  icon: 'error',
-  confirmButtonColor: '#7066e0',
-  confirmButtonText: 'OK'
-
+      title: 'Are you Sure?',
+      text: "This will tag the transaction as approved.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'YES',
+      cancelButtonText:'NO'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Success!',
+          'Work item completed with Commission Adjustment trans. no. 20242',
+          'success'
+        )
+      }
     })
-
   }
 
   completesweetalert(){
-    Swal.fire(
-      'Success!',
-      'Work item completed with Commission Adjustment trans no. 20242',
-      'success'
-    )
+    Swal.fire({
+      title: 'Are you Sure?',
+      text: "This will tag the transaction as approved.",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'YES',
+      cancelButtonText:'NO'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Success!',
+          'Work item completed with Commission Adjustment trans. no. 20242',
+          'success'
+        )
+      }
+    })
   }
 
 

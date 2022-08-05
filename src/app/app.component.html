@@ -63,9 +63,6 @@
     </div>
     
 
-<p style="color:  royalblue; font-family: 'Poppins', sans-serif; margin-left: 30px;">Update Invoice/s For Adjustment <mat-checkbox style="margin-left: 6px;"></mat-checkbox></p>
-<p style="color:  royalblue; font-size: 20px; font-family: 'Poppins', sans-serif; margin-left: 30px;" >Invoice/s For Adjustment</p>
-
 <div id="text" style="overflow-y: auto; overflow-x:auto;">
 
   <table  mat-table [dataSource]="dataSource2" class="CovAdjRevTable" >
@@ -170,7 +167,7 @@
 </div>
   <br><br>
   
-  
+  <p style="color:  royalblue; font-size: 20px; font-family: 'Poppins', sans-serif; margin-left: 30px;" >Invoice/s For Adjustment</p>
   <div class="CovAdjSecRevtable_container" style="overflow-y: auto; overflow-x: auto;">
   <table mat-table [dataSource]="dataSource" class="CovAdjSecRevtable">
 
@@ -455,9 +452,12 @@
       </mat-form-field>
       </form>
     </div>
+    <br>
     <div>
       <section style="margin-left: 17px;">
-          <mat-checkbox (click)="checksweetalert()"  style="color: royalblue;" class="addressPermanent" formControlName="clientIsBillingAddress">By Clicking this you have thoroughly reviewed this transaction?</mat-checkbox>
+        <p style="color:  royalblue; font-family: 'Poppins', sans-serif;">Update Invoice/s For Adjustment <mat-checkbox style="margin-left: 7px;"></mat-checkbox></p>
+        <br>
+        <mat-checkbox (click)="checksweetalert()"  style="color: royalblue;" class="addressPermanent" formControlName="clientIsBillingAddress">"By Clicking this, you agree that you have thoroughly reviewed this transaction."</mat-checkbox>
       </section>
   </div>
   <br><br>
@@ -482,6 +482,7 @@
         <mat-label>Response
         </mat-label>
         <select matNativeControl required>
+          <option value=></option>
           <option value="APPROVE ADJUSTMENT">Approve Adjustment</option>
           <option value="RETURN FOR REVISION">Return For Revision</option>
         </select>
